@@ -8,7 +8,7 @@
 
 	"use strict";
 
-	window.vUtil = {};
+	// window.vUtil = {};
 	window.app = factory($);
 
 })(jQuery, function ($) {
@@ -30,9 +30,7 @@
 			'UA'
 		],
 		init: function () {
-			this.loadScripts(function () {
-				app.__init();
-			});
+			app.__init();
 		},
 		__init: function () {
 			// 初始化左边栏
