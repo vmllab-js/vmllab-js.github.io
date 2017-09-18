@@ -8,7 +8,7 @@
 
 	"use strict";
 
-	// window.vUtil = {};
+	window.vUtil = window.vUtil || {};
 	window.app = factory($);
 
 })(jQuery, function ($) {
@@ -30,7 +30,9 @@
 			'UA'
 		],
 		init: function () {
-			app.__init();
+			// this.loadScripts(function () {
+				app.__init();
+			// });
 		},
 		__init: function () {
 			// 初始化左边栏
@@ -98,7 +100,7 @@
 				var code = example.code;
 				var $example = $('<div class="example">');
 				$example.data('id', id);
-				var $code = $('<pre>Code: <code class="javascript">' + code + '</code></pre>');
+				var $code = $('<pre>Code of ' + example.func + ': <code class="javascript">' + code + '</code></pre>');
 				$example.append($code);
 				var $result = $('<pre>Result: <code>' + __eval(code) + '</code></pre>');
 				$example.append($result);
@@ -119,8 +121,12 @@
 			return e;
 		}
 
-		function log(result) {
-			results.push(JSON.stringify(result));
+		function log() {
+			var arr = [];
+			window.Array.prototype.forEach.call(arguments, function (result) {
+				arr.push(JSON.stringify(result))
+			});
+			results.push(arr.join(', '));
 		}
 	}
 
