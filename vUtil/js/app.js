@@ -30,9 +30,9 @@
 			'UA'
 		],
 		init: function () {
-			this.loadScripts(function () {
+			// this.loadScripts(function () {
 				app.__init();
-			});
+			// });
 		},
 		__init: function () {
 			// 初始化左边栏
