@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="author" content="rhine@rhine.me">
+	<title>上传图片</title>
+	<style>
+		body {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<p>
+	<button id="upload">上传图片</button>
+</p>
+<p>
+	<img id="preview_image" style="width: 49%">
+	<img id="resize_image" style="width: 49%">
+	<img id="adjust_image" style="width: 100%">
+</p>
+
+<script src="js/exif.js"></script>
+<script src="js/inputImage.js"></script>
+<script>
+	upload.addEventListener('click', function () {
+		inputImage.input({
+			format: 'image',
+			success: function (files) {
+				preview_image.src = files[0].src;
+				// 尺寸不变的图片,可以用来绘制
+				inputImage.adjust({
+					image: files[0],
+					success: function (base64) {
+						adjust_image.src = base64;
+					}
+				});
+				// 尺寸变小的图片,可以用来检测脸
+				inputImage.resize({
+					image: files[0],
+					min: 480,
+					success: function (base64) {
+						resize_image.src = base64;
+					}
+				});
+			}
+		});
+	});
+</script>
+
+</body>
+</html>
