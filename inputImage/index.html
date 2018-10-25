@@ -9,7 +9,7 @@
 	<meta name="x5-orientation" content="portrait">
 	<meta name="screen-orientation" content="portrait">
 	<meta name="author" content="rhine@rhine.me">
-	<title>上传图片</title>
+	<title>Example of inputImage.js</title>
 	<style>
 		body {
 			text-align: center;
@@ -18,22 +18,30 @@
 </head>
 <body>
 <p>
-	<button id="upload">上传图片</button>
+	<button id="upload">Upload Image</button>
 </p>
 <p>
-	<img id="preview_image" style="width: 49%">
-	<img id="resize_image" style="width: 49%">
-	<img id="adjust_image" style="width: 100%">
+	original:<br>
+	<img id="original_image" style="max-width: 100%">
+</p>
+<p>
+	thumbnail:<br>
+	<img id="resize_image" style="max-width: 100%">
+</p>
+<p>
+	adjusted:<br>
+	<img id="adjust_image" style="max-width: 100%">
 </p>
 
-<script src="js/exif.js"></script>
-<script src="js/inputImage.js"></script>
+<script src="./js/exif.js"></script>
+<script src="./js/inputImage.js"></script>
 <script>
 	upload.addEventListener('click', function () {
 		inputImage.input({
+			camera: true,
 			format: 'image',
 			success: function (files) {
-				preview_image.src = files[0].src;
+				original_image.src = files[0].src;
 				// 尺寸不变的图片,可以用来绘制
 				inputImage.adjust({
 					image: files[0],
@@ -44,7 +52,7 @@
 				// 尺寸变小的图片,可以用来检测脸
 				inputImage.resize({
 					image: files[0],
-					min: 480,
+					max: 120,
 					success: function (base64) {
 						resize_image.src = base64;
 					}

@@ -1,7 +1,7 @@
 /**
  * 移动端上传图片工具, 包括微信和非微信情况
  * @author yinghao.liu
- * @version 1.0.1023
+ * @version 1.1.1025
  */
 
 (function (root, factory) {
@@ -75,7 +75,7 @@
 		 * @param-config min {Number} 新尺寸最小值
 		 * @param-config type {String} 返回base64格式图片的类型，默认为image/png
 		 * @param-config quality {float} 在指定图片格式为 image/jpeg 或 image/webp的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92。其他参数会被忽略。
-		 * @param-config success {Function} 返回base64格式新尺寸图片
+		 * @param-config success {Function} 返回base64格式新尺寸图片和宽高
 		 * @param-config fail {Function}
 		 */
 		resize: function (param) {
@@ -115,7 +115,7 @@
 					canvas.height = height;
 					var context = canvas.getContext('2d');
 					context.drawImage(img, 0, 0, W, H, 0, 0, width, height);
-					param.success(canvas.toDataURL(param.type || 'image/png', param.quality));
+					param.success(canvas.toDataURL(param.type || 'image/png', param.quality), width, height);
 				});
 			}
 
