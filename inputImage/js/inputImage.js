@@ -102,9 +102,9 @@
 					var width = param.width || (ratio > 1 ? param.max : param.min);
 					var height = param.height || (ratio > 1 ? param.min : param.max);
 					if (width) {
-						height = width / ratio;
+						height = Math.round(width / ratio);
 					} else if (height) {
-						width = height * ratio;
+						width = Math.round(height * ratio);
 					} else {
 						width = W;
 						height = H;
