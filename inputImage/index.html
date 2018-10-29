@@ -16,8 +16,22 @@
 		}
 
 		.container {
+			position: relative;
 			flex: 1;
 			margin: 5px;
+			background: #aaa;
+		}
+		img, canvas {
+			display: block;
+			width: 100%;
+		}
+		.title {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			color: #fff;
+			background: rgba(0,0,0,0.1);
+			padding: 5px 0;
 		}
 	</style>
 </head>
@@ -28,23 +42,23 @@
 
 <div style="display: flex;">
 	<div class="container">
-		original &lt;img&gt;:<br>
-		<img id="original_image" style="max-width: 100%">
+		<img id="original_image">
+		<div class="title">Original &lt;img&gt;</div>
 	</div>
 	<div class="container">
-		draw to &lt;canvas&gt;:<br>
-		<canvas id="original_canvas" style="max-width: 100%"></canvas>
+		<canvas id="original_canvas"></canvas>
+		<div class="title">Original &lt;canvas&gt;</div>
 	</div>
 </div>
 
 <div style="display: flex;">
 	<div class="container">
-		adjusted &lt;img&gt;:<br>
-		<img id="adjust_image" style="max-width: 100%">
+		<img id="adjust_image">
+		<div class="title">Adjusted &lt;img&gt;</div>
 	</div>
 	<div class="container">
-		adjusted &lt;canvas&gt;:<br>
-		<canvas id="adjust_canvas" style="max-width: 100%"></canvas>
+		<canvas id="adjust_canvas"></canvas>
+		<div class="title">Adjusted &lt;canvas&gt;</div>
 	</div>
 </div>
 
