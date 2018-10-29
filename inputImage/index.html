@@ -20,17 +20,21 @@
 <p>
 	<button id="upload">Upload Image</button>
 </p>
-<p>
-	original:<br>
+<p style="float: left; width: 50%">
+	original &lt;img&gt;:<br>
 	<img id="original_image" style="max-width: 100%">
 </p>
-<p>
-	thumbnail:<br>
-	<img id="resize_image" style="max-width: 100%">
+<p style="float: left; width: 50%">
+	draw to &lt;canvas&gt;:<br>
+	<canvas id="original_canvas" style="max-width: 100%"></canvas>
 </p>
-<p>
-	adjusted:<br>
+<p style="float: left; width: 50%">
+	adjusted &lt;img&gt;:<br>
 	<img id="adjust_image" style="max-width: 100%">
+</p>
+<p style="float: left; width: 50%">
+	adjusted &lt;canvas&gt;:<br>
+	<canvas id="adjust_canvas" style="max-width: 100%"></canvas>
 </p>
 
 <script src="./js/exif.js"></script>
@@ -42,24 +46,30 @@
 			format: 'image',
 			success: function (files) {
 				original_image.src = files[0].src;
-				// 尺寸不变的图片,可以用来绘制
+				drawCanvas(original_canvas, files[0]);
+
 				inputImage.adjust({
 					image: files[0],
-					success: function (base64) {
+					max: 375,
+					success: function (base64, width, height) {
 						adjust_image.src = base64;
-					}
-				});
-				// 尺寸变小的图片,可以用来检测脸
-				inputImage.resize({
-					image: files[0],
-					max: 120,
-					success: function (base64) {
-						resize_image.src = base64;
+						var img = new Image();
+						img.onload = function () {
+							drawCanvas(adjust_canvas, img);
+						};
+						img.src = base64;
 					}
 				});
 			}
 		});
 	});
+
+	function drawCanvas(canvas, img) {
+		var context = canvas.getContext('2d');
+		canvas.width = img.width;
+		canvas.height = img.height;
+		context.drawImage(img, 0, 0);
+	}
 </script>
 
 </body>
