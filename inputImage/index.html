@@ -14,28 +14,39 @@
 		body {
 			text-align: center;
 		}
+
+		.container {
+			flex: 1;
+			width: 49%;
+		}
 	</style>
 </head>
 <body>
 <p>
 	<button id="upload">Upload Image</button>
 </p>
-<p style="float: left; width: 50%">
-	original &lt;img&gt;:<br>
-	<img id="original_image" style="max-width: 100%">
-</p>
-<p style="float: left; width: 50%">
-	draw to &lt;canvas&gt;:<br>
-	<canvas id="original_canvas" style="max-width: 100%"></canvas>
-</p>
-<p style="float: left; width: 50%">
-	adjusted &lt;img&gt;:<br>
-	<img id="adjust_image" style="max-width: 100%">
-</p>
-<p style="float: left; width: 50%">
-	adjusted &lt;canvas&gt;:<br>
-	<canvas id="adjust_canvas" style="max-width: 100%"></canvas>
-</p>
+
+<div style="display: flex;">
+	<div class="container">
+		original &lt;img&gt;:<br>
+		<img id="original_image" style="max-width: 100%">
+	</div>
+	<div class="container">
+		draw to &lt;canvas&gt;:<br>
+		<canvas id="original_canvas" style="max-width: 100%"></canvas>
+	</div>
+</div>
+
+<div style="display: flex;">
+	<div class="container">
+		adjusted &lt;img&gt;:<br>
+		<img id="adjust_image" style="max-width: 100%">
+	</div>
+	<div class="container">
+		adjusted &lt;canvas&gt;:<br>
+		<canvas id="adjust_canvas" style="max-width: 100%"></canvas>
+	</div>
+</div>
 
 <script src="./js/exif.js"></script>
 <script src="./js/inputImage.js"></script>
