@@ -5,6 +5,7 @@ https://vmllab-js.github.io/vue-frame-player/
 
 ## Demo of vue-games
 https://vmllab-js.github.io/vue-games/TripleCrush/
+
 https://vmllab-js.github.io/vue-games/2048/
 
 ## Demo of vFramePlayer
